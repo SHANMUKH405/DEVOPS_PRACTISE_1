@@ -58,12 +58,15 @@ resource "aws_security_group" "app" {
   description = "Security group for application"
   vpc_id      = aws_vpc.main.id
 
+  # Note: These are example configurations for learning purposes
+  # In production, restrict access to specific IP ranges or use a load balancer
+  
   ingress {
     description = "HTTP"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]  # Consider restricting to load balancer SG
   }
 
   ingress {
@@ -71,7 +74,7 @@ resource "aws_security_group" "app" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]  # Consider restricting to load balancer SG
   }
 
   ingress {
@@ -79,7 +82,7 @@ resource "aws_security_group" "app" {
     from_port   = 5000
     to_port     = 5000
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]  # In production, restrict to VPC CIDR or load balancer
   }
 
   egress {

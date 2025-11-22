@@ -140,4 +140,6 @@ def info():
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
+    # Debug mode is enabled for development/learning purposes
+    # In production, use a WSGI server like gunicorn (see Dockerfile)
     app.run(host='0.0.0.0', port=port, debug=True)
