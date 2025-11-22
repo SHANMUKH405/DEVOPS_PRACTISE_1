@@ -113,13 +113,41 @@ jobs:
       run: |
         # Start container in background
         docker run -d -p 5000:5000 --name test-container devops-learning-app:latest
-        # Wait for app to start
-        sleep 5
-        # Test health endpoint
-        curl -f http://localhost:5000/health || exit 1
+        
+        # Wait for app to start (give it more time)
+        echo "Waiting for container to start..."
+        sleep 10
+        
+        # Check if container is running
+        if ! docker ps | grep -q test-container; then
+          echo "❌ Container is not running!"
+          docker logs test-container
+          exit 1
+        fi
+        
+        # Test health endpoint (retry a few times)
+        echo "Testing health endpoint..."
+        for i in {1..5}; do
+          if curl -f http://localhost:5000/health; then
+            echo "✅ Health check passed!"
+            break
+          else
+            echo "Attempt $i failed, retrying..."
+            sleep 2
+          fi
+        done
+        
+        # Final check
+        if ! curl -f http://localhost:5000/health; then
+          echo "❌ Health check failed after retries"
+          docker logs test-container
+          exit 1
+        fi
+        
         # Clean up
         docker stop test-container
         docker rm test-container
+        echo "✅ Docker image test passed!"
 
   # --------------------------------------------------------------------------
   # JOB 3: SECURITY SCAN
