@@ -145,7 +145,13 @@ def init_database():
         conn.close()
 
 # Initialize database when app starts
-init_database()
+# Only initialize if DATABASE_URL is set (don't fail if database not available)
+if DATABASE_URL:
+    try:
+        init_database()
+    except Exception as e:
+        print(f"⚠️  Could not initialize database: {e}")
+        print("⚠️  App will run without database connection")
 
 # ============================================================================
 # HTML TEMPLATE FOR HOMEPAGE
