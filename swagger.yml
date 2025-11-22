@@ -1,0 +1,402 @@
+# ============================================================================
+# SWAGGER/OPENAPI SPECIFICATION
+# ============================================================================
+# This file documents your API using the OpenAPI 3.0 specification
+# 
+# What is this?
+# - Documents all your API endpoints
+# - Shows what parameters they take
+# - Shows what they return
+# - Can be used to generate interactive documentation
+#
+# How to use:
+# - View in Swagger UI: https://editor.swagger.io/ (paste this file)
+# - Generate docs: Use tools like Swagger UI, Redoc
+# - Test APIs: Use Swagger UI to test endpoints
+# ============================================================================
+
+openapi: 3.0.0
+
+# ----------------------------------------------------------------------------
+# API INFORMATION
+# ----------------------------------------------------------------------------
+info:
+  title: DevOps Learning App API
+  description: |
+    API for the DevOps Learning Project - A beginner-friendly Flask application.
+    
+    This API demonstrates:
+    - Health checks for monitoring
+    - Application information endpoints
+    - Status endpoints
+    - Database operations (CRUD)
+    - Statistics and analytics
+  version: 1.0.0
+  contact:
+    name: DevOps Learning Project
+    url: https://github.com/yourusername/devops-learning
+
+# ----------------------------------------------------------------------------
+# SERVERS
+# ----------------------------------------------------------------------------
+# Where the API is hosted
+servers:
+  - url: http://localhost:5001
+    description: Local development server
+  - url: http://localhost:80
+    description: Production server (through Nginx)
+
+# ----------------------------------------------------------------------------
+# API PATHS (ENDPOINTS)
+# ----------------------------------------------------------------------------
+paths:
+  # --------------------------------------------------------------------------
+  # Health Check Endpoint
+  # --------------------------------------------------------------------------
+  /health:
+    get:
+      summary: Health check endpoint
+      description: |
+        Returns the health status of the application.
+        
+        This endpoint is used by monitoring tools to check if the application
+        is running correctly. Returns HTTP 200 if healthy.
+      operationId: getHealth
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Application is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                    description: Health status of the application
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-11-22T00:00:00.000000"
+                    description: Current server timestamp
+              example:
+                status: "healthy"
+                timestamp: "2025-11-22T00:00:00.000000"
+
+  # --------------------------------------------------------------------------
+  # Application Information Endpoint
+  # --------------------------------------------------------------------------
+  /api/info:
+    get:
+      summary: Get application information
+      description: |
+        Returns detailed information about the application including:
+        - Application name
+        - Version
+        - Environment
+        - Hostname
+        - Current timestamp
+      operationId: getAppInfo
+      tags:
+        - Application
+      responses:
+        '200':
+          description: Application information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app_name:
+                    type: string
+                    example: "My First DevOps App!"
+                    description: Name of the application
+                  version:
+                    type: string
+                    example: "1.0.0"
+                    description: Application version
+                  environment:
+                    type: string
+                    example: "production"
+                    description: Current environment (development, staging, production)
+                  hostname:
+                    type: string
+                    example: "3e7a682f8f7b"
+                    description: Container hostname
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-11-22T00:00:00.000000"
+                    description: Current server timestamp
+              example:
+                app_name: "My First DevOps App!"
+                version: "1.0.0"
+                environment: "production"
+                hostname: "3e7a682f8f7b"
+                timestamp: "2025-11-22T00:00:00.000000"
+
+  # --------------------------------------------------------------------------
+  # Status Endpoint
+  # --------------------------------------------------------------------------
+  /api/status:
+    get:
+      summary: Get application status
+      description: |
+        Returns the current status of the application including:
+        - Running status
+        - Environment
+        - Timestamp
+      operationId: getStatus
+      tags:
+        - Application
+      responses:
+        '200':
+          description: Application status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "running"
+                    description: Current status of the application
+                  uptime:
+                    type: string
+                    example: "N/A"
+                    description: Application uptime (not currently tracked)
+                  environment:
+                    type: string
+                    example: "production"
+                    description: Current environment
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-11-22T00:00:00.000000"
+                    description: Current server timestamp
+              example:
+                status: "running"
+                uptime: "N/A"
+                environment: "production"
+                timestamp: "2025-11-22T00:00:00.000000"
+
+  # --------------------------------------------------------------------------
+  # Database Endpoints
+  # --------------------------------------------------------------------------
+  /api/users:
+    get:
+      summary: Get all users
+      description: |
+        Retrieves all users from the database.
+        Returns a list of users with their information.
+      operationId: getUsers
+      tags:
+        - Database
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 2
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "John Doe"
+                        email:
+                          type: string
+                          example: "john@example.com"
+                        created_at:
+                          type: string
+                          format: date-time
+        '503':
+          description: Database not available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Database not available"
+                  users:
+                    type: array
+                    items: {}
+
+    post:
+      summary: Create a new user
+      description: |
+        Creates a new user in the database.
+        Requires name and email in the request body.
+      operationId: createUser
+      tags:
+        - Database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+              properties:
+                name:
+                  type: string
+                  example: "Jane Doe"
+                email:
+                  type: string
+                  example: "jane@example.com"
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User created successfully"
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: "Jane Doe"
+                      email:
+                        type: string
+                        example: "jane@example.com"
+                      created_at:
+                        type: string
+                        format: date-time
+        '400':
+          description: Bad request - missing required fields
+        '409':
+          description: Conflict - email already exists
+        '503':
+          description: Database not available
+
+  /api/stats:
+    get:
+      summary: Get database statistics
+      description: |
+        Returns statistics about the database including:
+        - Total number of users
+        - Total number of API visits
+        - Recent visit history
+      operationId: getStats
+      tags:
+        - Database
+      responses:
+        '200':
+          description: Database statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  database_connected:
+                    type: boolean
+                    example: true
+                  users:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 5
+                  visits:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 42
+                      recent:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            endpoint:
+                              type: string
+                              example: "/api/users"
+                            visited_at:
+                              type: string
+                              format: date-time
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  # --------------------------------------------------------------------------
+  # Homepage (HTML Response)
+  # --------------------------------------------------------------------------
+  /:
+    get:
+      summary: Homepage
+      description: |
+        Returns the HTML homepage of the application.
+        This is not a JSON API endpoint, but returns HTML.
+      operationId: getHomepage
+      tags:
+        - Web
+      responses:
+        '200':
+          description: HTML homepage
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML content of the homepage
+
+# ----------------------------------------------------------------------------
+# TAGS
+# ----------------------------------------------------------------------------
+# Group endpoints by category
+tags:
+  - name: Health
+    description: Health check endpoints for monitoring
+  - name: Application
+    description: Application information and status endpoints
+  - name: Database
+    description: Database operations - users and statistics
+  - name: Web
+    description: Web page endpoints
+
+# ============================================================================
+# HOW TO USE THIS FILE
+# ============================================================================
+#
+# 1. View in Swagger Editor:
+#    - Go to https://editor.swagger.io/
+#    - Paste this file
+#    - See interactive documentation
+#
+# 2. Generate Swagger UI:
+#    - Use tools like swagger-ui or redoc
+#    - Host this file and view in browser
+#
+# 3. Test APIs:
+#    - Use Swagger UI to test endpoints
+#    - No need to write curl commands!
+#
+# 4. Generate Client Code:
+#    - Use swagger-codegen or openapi-generator
+#    - Generate Python, JavaScript, etc. clients
+#
+# ============================================================================
+

@@ -1,0 +1,26 @@
+# ============================================================================
+# PYTHON DEPENDENCIES
+# ============================================================================
+# This file lists all Python libraries (packages) our application needs
+# 
+# When you run: pip install -r requirements.txt
+# It installs all these packages automatically
+#
+# This is important for DevOps because:
+# - Ensures everyone has the same versions
+# - Makes deployment reproducible
+# - Docker uses this to install dependencies in containers
+# ============================================================================
+
+# Flask - Web framework for building our application
+# Version 3.0.0 (specific version for consistency)
+Flask==3.0.0
+
+# Gunicorn - Production-ready web server
+# We use this in Docker instead of Flask's development server
+# It's faster and more secure for production
+gunicorn==21.2.0
+
+# PostgreSQL adapter for Python
+# Allows Flask app to connect to PostgreSQL database
+psycopg2-binary==2.9.9

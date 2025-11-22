@@ -1,0 +1,93 @@
+# ============================================================================
+# .DOCKERIGNORE - FILES TO EXCLUDE FROM DOCKER BUILD
+# ============================================================================
+# Similar to .gitignore, but for Docker builds
+# 
+# Why use .dockerignore?
+# - Faster builds (Docker doesn't copy unnecessary files)
+# - Smaller images (exclude large files)
+# - Better security (don't copy secrets)
+# - Reduce build context size
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Git Files
+# ----------------------------------------------------------------------------
+# Git history is large and not needed in the container
+
+.git
+.gitignore
+
+# ----------------------------------------------------------------------------
+# Python Cache
+# ----------------------------------------------------------------------------
+# Python cache files are generated - don't need in container
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ----------------------------------------------------------------------------
+# Virtual Environments
+# ----------------------------------------------------------------------------
+# Virtual environments are large and not needed
+# (We install dependencies in the Dockerfile)
+
+venv/
+env/
+ENV/
+
+# ----------------------------------------------------------------------------
+# IDE Files
+# ----------------------------------------------------------------------------
+# IDE settings are not needed in the container
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
+# Documentation files are not needed to run the app
+# (Optional - you might want to include them)
+
+*.md
+docs/
+
+# ----------------------------------------------------------------------------
+# CI/CD Files
+# ----------------------------------------------------------------------------
+# CI/CD configuration is not needed in the container
+
+.github/
+
+# ----------------------------------------------------------------------------
+# Logs
+# ----------------------------------------------------------------------------
+# Log files are generated at runtime
+
+*.log
+
+# ----------------------------------------------------------------------------
+# OS Files
+# ----------------------------------------------------------------------------
+# Operating system files
+
+.DS_Store
+Thumbs.db
+
+# ============================================================================
+# WHAT GETS INCLUDED
+# ============================================================================
+# 
+# Docker WILL copy:
+#   - app.py (our application)
+#   - requirements.txt (dependencies list)
+#   - Dockerfile (build instructions)
+#   - Any other files not listed above
+#
+# ============================================================================

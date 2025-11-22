@@ -1,0 +1,97 @@
+# ============================================================================
+# .GITIGNORE - FILES TO IGNORE IN GIT
+# ============================================================================
+# This file tells Git which files NOT to track
+# 
+# Why ignore files?
+# - Some files are generated (don't need to version control)
+# - Some files are personal (like IDE settings)
+# - Some files contain secrets (like passwords)
+# - Reduces repository size
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Python
+# ----------------------------------------------------------------------------
+# Python creates cache files and bytecode - we don't need to track these
+
+__pycache__/          # Python cache directory
+*.py[cod]             # Compiled Python files (.pyc, .pyo, .pyd)
+*$py.class            # Python class files
+*.so                  # Shared object files
+.Python               # Python environment marker
+venv/                 # Virtual environment
+env/                  # Virtual environment
+ENV/                  # Virtual environment
+.venv                 # Virtual environment
+
+# ----------------------------------------------------------------------------
+# IDE and Editor Files
+# ----------------------------------------------------------------------------
+# Different developers use different IDEs - don't track their settings
+
+.vscode/              # Visual Studio Code settings
+.idea/                # IntelliJ IDEA / PyCharm settings
+*.swp                 # Vim swap files
+*.swo                 # Vim swap files
+*.swn                 # Vim swap files
+.DS_Store             # macOS system file
+
+# ----------------------------------------------------------------------------
+# Logs
+# ----------------------------------------------------------------------------
+# Log files are generated at runtime - don't need to track
+
+*.log                 # Log files
+logs/                 # Log directory
+
+# ----------------------------------------------------------------------------
+# Environment Variables
+# ----------------------------------------------------------------------------
+# NEVER commit files with secrets (passwords, API keys, etc.)
+
+.env                  # Environment variables (may contain secrets!)
+.env.local            # Local environment variables
+.env.*.local          # Local environment variable files
+
+# ----------------------------------------------------------------------------
+# Docker
+# ----------------------------------------------------------------------------
+# Docker build artifacts (optional - some teams track these)
+
+.docker/              # Docker build directory
+
+# ----------------------------------------------------------------------------
+# Testing
+# ----------------------------------------------------------------------------
+# Test artifacts - generated files from running tests
+
+.pytest_cache/        # Pytest cache
+.coverage             # Coverage report
+htmlcov/              # HTML coverage report
+
+# ----------------------------------------------------------------------------
+# OS Files
+# ----------------------------------------------------------------------------
+# Operating system generated files
+
+Thumbs.db             # Windows thumbnail cache
+.DS_Store             # macOS Finder metadata
+
+# ============================================================================
+# BEST PRACTICES
+# ============================================================================
+# 
+# ✅ DO ignore:
+#   - Generated files (cache, logs, builds)
+#   - Personal settings (IDE configs)
+#   - Secrets (passwords, API keys)
+#   - Dependencies (node_modules, venv)
+#
+# ❌ DON'T ignore:
+#   - Source code
+#   - Configuration files (without secrets)
+#   - Documentation
+#   - Dockerfiles, docker-compose.yml
+#
+# ============================================================================
