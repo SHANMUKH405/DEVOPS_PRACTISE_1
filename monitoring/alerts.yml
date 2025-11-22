@@ -1,0 +1,30 @@
+groups:
+  - name: devops_practice_alerts
+    interval: 30s
+    rules:
+      - alert: ApplicationDown
+        expr: up{job="devops-practice-app"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Application is down"
+          description: "The DevOps Practice application has been down for more than 2 minutes."
+      
+      - alert: HighResponseTime
+        expr: http_request_duration_seconds > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time detected"
+          description: "Response time is above 1 second for the last 5 minutes."
+      
+      - alert: HighMemoryUsage
+        expr: container_memory_usage_bytes{container="app"} / container_spec_memory_limit_bytes{container="app"} > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Container memory usage is above 80% for the last 5 minutes."
