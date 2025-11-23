@@ -15,7 +15,7 @@ This project teaches you DevOps by building a real web application. You'll learn
 
 ---
 
-## 🎯 Quick Start (5 Minutes)
+## ⚡ Quick Start (5 Minutes)
 
 ```bash
 # 1. Make sure Docker is running
