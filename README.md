@@ -2,6 +2,8 @@
 
 Welcome to your first DevOps project! This is designed for **complete beginners** who want to learn DevOps concepts hands-on.
 
+> **Note:** This project includes a complete CI/CD pipeline, database integration, and comprehensive documentation to help you learn DevOps from scratch.
+
 ## 📚 What is This Project?
 
 This project teaches you DevOps by building a real web application. You'll learn:
