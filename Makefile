@@ -11,6 +11,7 @@
 .PHONY: help build run stop clean test lint docker-build docker-run docker-stop docker-clean compose-up compose-down logs
 
 # Default target - when you just type "make", show help
+# This is the first target, so it runs when you type "make" without arguments
 help:
 	@echo "DevOps Learning Project - Available Commands:"
 	@echo ""
