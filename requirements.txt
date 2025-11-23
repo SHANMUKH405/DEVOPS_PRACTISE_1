@@ -19,6 +19,7 @@ Flask==3.0.0
 # Gunicorn - Production-ready web server
 # We use this in Docker instead of Flask's development server
 # It's faster and more secure for production
+# Supports multiple workers for better performance
 gunicorn==21.2.0
 
 # PostgreSQL adapter for Python
