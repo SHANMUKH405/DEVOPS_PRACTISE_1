@@ -61,12 +61,13 @@ services:
     
     # Health check configuration
     # Docker Compose will check this to know if service is healthy
+    # If health check fails, Docker Compose can restart the service
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s      # Check every 30 seconds
       timeout: 10s       # Timeout after 10 seconds
       retries: 3         # Retry 3 times before marking unhealthy
-      start_period: 40s  # Wait 40 seconds before first check
+      start_period: 40s  # Wait 40 seconds before first check (gives app time to start)
     
     # Network configuration
     # All services on the same network can talk to each other
