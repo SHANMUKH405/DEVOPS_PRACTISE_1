@@ -152,12 +152,14 @@ services:
     restart: unless-stopped
     
     # Health check - ensure database is ready
+    # pg_isready checks if PostgreSQL is accepting connections
+    # This ensures the database is fully initialized before other services start
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U devops_user -d devops_db"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
+      interval: 10s      # Check every 10 seconds
+      timeout: 5s        # Timeout after 5 seconds
+      retries: 5         # Retry 5 times before marking unhealthy
+      start_period: 10s  # Wait 10 seconds before first check
     
     # Network configuration
     networks:
