@@ -67,6 +67,7 @@ EXPOSE 5000
 # PYTHONUNBUFFERED ensures Python output is shown immediately (better for logs)
 ENV FLASK_APP=app.py
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 # ----------------------------------------------------------------------------
 # HEALTH CHECK
