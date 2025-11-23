@@ -77,9 +77,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     # Step 5: Test the application
+    # Verify that the application can be imported without errors
     - name: Test application
       run: |
         python -c "import app; print('✓ App imports successfully')"
+        python -c "from app import app; print('✓ Flask app object created')"
 
   # --------------------------------------------------------------------------
   # JOB 2: BUILD
