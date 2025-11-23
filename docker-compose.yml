@@ -188,6 +188,7 @@ volumes:
     # Data is stored in Docker's volume directory
     # To see volumes: docker volume ls
     # To inspect: docker volume inspect devops_prac1_postgres_data
+    # To backup: docker run --rm -v devops_prac1_postgres_data:/data -v $(pwd):/backup alpine tar czf /backup/backup.tar.gz /data
 
 # ----------------------------------------------------------------------------
 # NETWORKS
