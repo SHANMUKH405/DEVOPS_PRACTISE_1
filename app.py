@@ -332,11 +332,19 @@ def status():
     - Monitoring dashboards
     - Debugging
     - Understanding application state
+    - Health monitoring systems
     """
+    # Check database connection status
+    db_conn = get_db_connection()
+    db_status = 'connected' if db_conn else 'disconnected'
+    if db_conn:
+        db_conn.close()
+    
     return jsonify({
         'status': 'running',
         'uptime': 'N/A',  # Could be enhanced with actual uptime tracking
         'environment': ENVIRONMENT,
+        'database': db_status,
         'timestamp': datetime.datetime.now().isoformat()
     })
 
