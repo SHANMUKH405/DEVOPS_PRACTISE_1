@@ -80,6 +80,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # --start-period=5s = Wait 5 seconds before first check (app needs time to start)
 # --retries=3 = Try 3 times before marking as unhealthy
 
+# Health check configuration
+# Docker will automatically check if the container is healthy
+# If health check fails, Docker can restart the container
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"
 
