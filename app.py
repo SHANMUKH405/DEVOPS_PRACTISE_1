@@ -567,11 +567,13 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     
     # Only enable debug mode in development (shows errors in browser)
+    # In production, debug should always be False for security
     debug = ENVIRONMENT == 'development'
     
     # Start the web server
     # host='0.0.0.0' means: listen on all network interfaces
     #                     (allows access from other computers, not just localhost)
+    # This is important for Docker containers
     app.run(host='0.0.0.0', port=port, debug=debug)
 
 """
