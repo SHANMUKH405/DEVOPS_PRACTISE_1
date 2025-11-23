@@ -427,11 +427,14 @@ def get_users():
         })
     except Exception as e:
         return jsonify({
-            'error': str(e)
+            'error': str(e),
+            'message': 'An error occurred while fetching users'
         }), 500
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 @app.route('/api/users', methods=['POST'])
 def create_user():
