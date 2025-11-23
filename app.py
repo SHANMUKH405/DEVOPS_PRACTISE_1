@@ -502,15 +502,17 @@ def create_user():
 @app.route('/api/stats', methods=['GET'])
 def get_stats():
     """
-    Get database statistics
+    Get database statistics and application metrics
     
     What this does:
-    1. Counts total users
-    2. Counts total visits
-    3. Gets recent visits
-    4. Returns statistics
+    1. Checks database connection status
+    2. Counts total users in database
+    3. Counts total API visits
+    4. Gets recent visit history (last 10)
+    5. Returns comprehensive statistics
     
     Try it: curl http://localhost:5001/api/stats
+    Returns: JSON with database status, user count, visit statistics
     """
     conn = get_db_connection()
     if not conn:
