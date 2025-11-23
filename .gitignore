@@ -2,6 +2,7 @@
 # .GITIGNORE - FILES TO IGNORE IN GIT
 # ============================================================================
 # This file tells Git which files NOT to track
+# Files listed here won't be committed to the repository
 # 
 # Why ignore files?
 # - Some files are generated (don't need to version control)
