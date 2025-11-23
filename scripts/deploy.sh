@@ -3,6 +3,7 @@
 # ============================================================================
 # DEPLOYMENT SCRIPT
 # ============================================================================
+# This script automates the deployment process for the DevOps learning project
 # This script automates the deployment process
 # 
 # What it does:
