@@ -35,6 +35,7 @@ services:
     
     # Port mapping: host_port:container_port
     # Access the app at localhost:5001 (changed from 5000 because macOS uses port 5000)
+    # Format: "host_port:container_port" - maps host port to container port
     ports:
       - "5001:5000"
     
