@@ -11,12 +11,14 @@ This file contains our web application code. It creates a website that:
 - Shows a homepage when you visit it
 - Has a health check endpoint (for monitoring)
 - Provides API endpoints that return JSON data
+- Connects to PostgreSQL database for data persistence
 
 LEARNING GOALS:
 - Understand how web applications work
 - Learn about RESTful APIs
 - See how environment variables work
 - Understand health checks (important for DevOps!)
+- Learn database integration and CRUD operations
 
 ================================================================================
 """
