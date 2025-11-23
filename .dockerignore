@@ -2,6 +2,7 @@
 # .DOCKERIGNORE - FILES TO EXCLUDE FROM DOCKER BUILD
 # ============================================================================
 # Similar to .gitignore, but for Docker builds
+# Reduces build context size and speeds up Docker builds
 # 
 # Why use .dockerignore?
 # - Faster builds (Docker doesn't copy unnecessary files)
