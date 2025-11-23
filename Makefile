@@ -48,8 +48,10 @@ build:
 	@echo "✓ Setup complete! Activate with: source venv/bin/activate"
 
 # Run the application locally (without Docker)
+# Note: Requires Python 3.11+ and installed dependencies
 run:
 	@echo "Starting Flask application..."
+	@echo "Make sure you have installed dependencies: make build"
 	python3 app.py
 
 # Run tests
