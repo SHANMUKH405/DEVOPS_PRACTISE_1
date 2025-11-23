@@ -396,8 +396,10 @@ def get_users():
     1. Connects to database
     2. Queries all users
     3. Returns as JSON
+    4. Tracks the API visit for analytics
     
     Try it: curl http://localhost:5001/api/users
+    Returns: JSON with user count and list of users
     """
     conn = get_db_connection()
     if not conn:
