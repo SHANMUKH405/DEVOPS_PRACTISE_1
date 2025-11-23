@@ -440,14 +440,17 @@ def create_user():
     
     What this does:
     1. Gets data from request (JSON)
-    2. Validates the data
+    2. Validates the data (name and email required)
     3. Inserts into database
-    4. Returns the created user
+    4. Returns the created user with ID
+    5. Tracks the API visit for analytics
     
     Try it:
     curl -X POST http://localhost:5001/api/users \
       -H "Content-Type: application/json" \
       -d '{"name": "John Doe", "email": "john@example.com"}'
+    
+    Returns: JSON with created user data and success message
     """
     conn = get_db_connection()
     if not conn:
