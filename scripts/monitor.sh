@@ -3,6 +3,7 @@
 # ============================================================================
 # MONITORING SCRIPT
 # ============================================================================
+# This script provides monitoring capabilities for the DevOps learning project
 # This script monitors your application to ensure it's working correctly
 # 
 # What it checks:
